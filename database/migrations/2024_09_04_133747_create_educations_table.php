@@ -20,9 +20,8 @@ return new class extends Migration
             $table->string('country');
             $table->string('city');
             $table->string('description')->nullable();
-            $table->string('city');
 
-            $table->foreign('user_id')
+            $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');

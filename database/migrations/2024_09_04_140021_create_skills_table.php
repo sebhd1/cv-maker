@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('skill');
             $table->string('level');
 
-            $table->foreign('user_id')
+            $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');

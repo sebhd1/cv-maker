@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('expires_at')->nullable();
             $table->string('token')->nullable();
 
-            $table->foreign('user_id')
+            $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
