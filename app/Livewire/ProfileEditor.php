@@ -3,7 +3,6 @@
     namespace App\Livewire;
 
     use App\Livewire\Forms\ProfileEditorForm;
-    use App\Models\Profile;
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Contracts\View\View;
     use Illuminate\Foundation\Application;
@@ -11,19 +10,23 @@
 
     class ProfileEditor extends Component
     {
-        public ProfileEditorForm $profileEditorForm;
+        public ProfileEditorForm $form;
 
+        public function mount() {
+            $this->form->fill(
+                auth()->user()->profile?->toArray() ?? []
+            );
+        }
 
         /**
          * Save the profile.
          *
          * @return void
          */
-        public function save(): void
+        public function updatedForm(): void
         {
-            $validatedData = $this->profileEditorForm->validate();
-
-            Profile::create([$validatedData]);
+            $this->form->store();
+            session()->flash('message', 'Profile created successfully.');
         }
 
         public function render(): Application|Factory|View|\Illuminate\View\View

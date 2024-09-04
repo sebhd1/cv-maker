@@ -2,21 +2,22 @@
 
     namespace App\Livewire\Forms;
 
+    use App\Models\Profile;
     use Livewire\Attributes\Validate;
     use Livewire\Form;
 
     class ProfileEditorForm extends Form
     {
         #[Validate('required|string|max:255')]
-        public $jobTitle = '';
+        public $job_title = '';
 
         #[Validate('required|string|max:255')]
-        public $firstName = '';
+        public $first_name = '';
 
         #[Validate('required|string|max:255')]
-        public $lastName = '';
+        public $last_name = '';
 
-        #[Validate('required|email|unique:users,email')]
+        #[Validate('required|email')]
         public $email = '';
 
         #[Validate('required|string|max:15')]
@@ -32,7 +33,7 @@
         public $nationality = '';
 
         #[Validate('required|integer|exists:users,id')]
-        public $userId = '';
+        public $user_id = '';
 
         #[Validate('required|string|max:255')]
         public $line1 = '';
@@ -41,23 +42,34 @@
         public $line2 = '';
 
         #[Validate('required|string|max:10')]
-        public $postalCode = '';
+        public $postal_code = '';
 
         #[Validate('nullable|string|max:255')]
-        public $drivingLicense = '';
+        public $driving_license = '';
 
         #[Validate('required|date')]
-        public $dateOfBirth = '';
+        public $date_of_birth = '';
 
         #[Validate('required|string|max:255')]
-        public $placeOfBirth = '';
+        public $place_of_birth = '';
 
         #[Validate('nullable|string')]
         public $bio = '';
 
-        #[Validate('nullable|date')]
-        public $deletedAt = '';
 
+        /**
+         * Save the profile.
+         *
+         * @return Profile
+         */
+        public function store(): Profile
+        {
+            $validatedData = $this->validate();
 
+            return Profile::updateOrCreate([
+                'id' => auth()->user()->profile?->id,
+            ], $validatedData);
+
+        }
     }
 
