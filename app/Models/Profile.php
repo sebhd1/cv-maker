@@ -21,6 +21,7 @@ class Profile extends Model
         'user_id',
         'line1',
         'line2',
+        'nationality',
         'postal_code',
         'driving_license',
         'date_of_birth',
@@ -29,8 +30,12 @@ class Profile extends Model
         'deleted_at'
     ];
 
+    protected $casts = [
+        'deleted_at' => 'datetime',
+        'date_of_birth' => 'date:Y-m-d',
+    ];
 
-    /***
+    /**
      * @return BelongsTo
      */
     public function user(): BelongsTo

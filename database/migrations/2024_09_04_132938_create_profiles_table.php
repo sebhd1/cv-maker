@@ -21,11 +21,12 @@ return new class extends Migration
             $table->string('country');
             $table->string('city');
             $table->string('line1');
-            $table->string('line2');
+            $table->string('line2')->nullable();
             $table->string('postal_code');
-            $table->string('driving_license');
+            $table->string('nationality');
+            $table->string('driving_license')->nullable();
             $table->date('date_of_birth');
-            $table->date('place_of_birth');
+            $table->string('place_of_birth');
             $table->text('bio');
 
             $table->foreignId('user_id')
