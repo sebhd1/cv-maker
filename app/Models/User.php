@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'deleted_at'
     ];
 
     /**
@@ -43,5 +46,57 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    /***
+     * @return HasOne
+     */
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function courses(): HasMany
+    {
+    return $this->hasMany(Course::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function educations(): HasMany {
+        return $this->hasMany(Education::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function skills(): HasMany {
+        return $this->hasMany(Skill::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function languages(): HasMany {
+        return $this->hasMany(Language::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function socialLinks(): HasMany {
+        return $this->hasMany(SocialLink::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function employments(): HasMany {
+        return $this->hasMany(Employment::class);
     }
 }

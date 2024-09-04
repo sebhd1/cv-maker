@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('postal_code');
             $table->string('driving_license');
             $table->date('date_of_birth');
+            $table->date('place_of_birth');
             $table->text('bio');
 
             $table->foreignId('user_id')
