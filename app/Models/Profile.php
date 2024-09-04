@@ -11,6 +11,7 @@ class Profile extends Model
     use HasFactory;
 
     protected $fillable = [
+        'job_title',
         'first_name',
         'last_name',
         'email',

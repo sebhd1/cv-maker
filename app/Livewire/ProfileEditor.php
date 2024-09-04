@@ -1,13 +1,33 @@
 <?php
 
-namespace App\Livewire;
+    namespace App\Livewire;
 
-use Livewire\Component;
+    use App\Livewire\Forms\ProfileEditorForm;
+    use App\Models\Profile;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Contracts\View\View;
+    use Illuminate\Foundation\Application;
+    use Livewire\Component;
 
-class ProfileEditor extends Component
-{
-    public function render()
+    class ProfileEditor extends Component
     {
-        return view('livewire.profile-editor');
+        public ProfileEditorForm $profileEditorForm;
+
+
+        /**
+         * Save the profile.
+         *
+         * @return void
+         */
+        public function save(): void
+        {
+            $validatedData = $this->profileEditorForm->validate();
+
+            Profile::create([$validatedData]);
+        }
+
+        public function render(): Application|Factory|View|\Illuminate\View\View
+        {
+            return view('livewire.profile-editor');
+        }
     }
-}
