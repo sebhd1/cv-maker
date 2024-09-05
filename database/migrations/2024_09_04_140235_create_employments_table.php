@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->string('city');
-            $table->string('description');
+            $table->string('description')->nullable();
 
             $table->foreignId('user_id')
                 ->references('id')
