@@ -26,6 +26,7 @@
         public function updatedForm(): void
         {
             $this->form->store();
+
             session()->flash('message', 'Profile created successfully.');
         }
 

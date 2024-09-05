@@ -9,7 +9,7 @@
     class ProfileEditorForm extends Form
     {
         #[Validate('required|string|max:255')]
-        public $job_title = '';
+        public $title = '';
 
         #[Validate('required|string|max:255')]
         public $first_name = '';
@@ -32,20 +32,17 @@
         #[Validate('required|string|max:255')]
         public $nationality = '';
 
-        #[Validate('required|integer|exists:users,id')]
-        public $user_id = '';
-
         #[Validate('required|string|max:255')]
         public $line1 = '';
 
         #[Validate('nullable|string|max:255')]
-        public $line2 = '';
+        public $line2 = null;
 
         #[Validate('required|string|max:10')]
         public $postal_code = '';
 
         #[Validate('nullable|string|max:255')]
-        public $driving_license = '';
+        public $driving_license = null;
 
         #[Validate('required|date')]
         public $date_of_birth = '';
@@ -54,7 +51,7 @@
         public $place_of_birth = '';
 
         #[Validate('nullable|string')]
-        public $bio = '';
+        public $bio = null;
 
 
         /**
@@ -66,10 +63,12 @@
         {
             $validatedData = $this->validate();
 
-            return Profile::updateOrCreate([
-                'id' => auth()->user()->profile?->id,
-            ], $validatedData);
+            $user = auth()->user();
 
+            return $user->profile()->updateOrCreate(
+                [ 'id' => $user->profile?->id ], // Matches the profile by the ID...
+                $validatedData // If the profile exists, update it with these data or create a new one with them
+            );
         }
     }
 
