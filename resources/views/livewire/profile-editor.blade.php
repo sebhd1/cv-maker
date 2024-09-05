@@ -2,26 +2,36 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <h2 class="font-semibold text-white px-3 py-3">Personal Details</h2>
+
+                <div>
+                    @if($errors?->any())
+                        @foreach($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    @endif
+                </div>
+
                 <div class="p-6 text-gray-900 dark:text-gray-100 grid grid-cols-2 gap-4">
                     <!-- Job title -->
                     <div>
-                        <x-input-label for="job-title" :value="__('Job Title')" />
-                        <x-text-input wire:model.live="form.job_title" id="job-title" class="block mt-1 w-full" type="text" name="job-title" required />
-                        <x-input-error :messages="$errors->get('form.job-title')" class="mt-2" />
+                        <x-input-label for="title" :value="__('Title')" />
+                        <x-text-input wire:model.live="form.title" id="title" class="block mt-1 w-full" type="text" name="title" required />
+                        <x-input-error :messages="$errors->get('form.title')" class="mt-2" />
                     </div>
 
                     <!-- First Name -->
                     <div>
                         <x-input-label for="first-name" :value="__('First Name')" />
                         <x-text-input wire:model.live="form.first_name" id="first-name" class="block mt-1 w-full" type="text" name="first-name" required />
-                        <x-input-error :messages="$errors->get('form.first-name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('form.first_name')" class="mt-2" />
                     </div>
 
                     <!-- Last Name -->
                     <div>
                         <x-input-label for="last-name" :value="__('Last Name')" />
                         <x-text-input wire:model.live="form.last_name" id="last-name" class="block mt-1 w-full" type="text" name="last-name" required />
-                        <x-input-error :messages="$errors->get('form.last-name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('form.last_name')" class="mt-2" />
                     </div>
 
                     <!-- Email -->
@@ -71,14 +81,14 @@
                     <div>
                         <x-input-label for="postal-code" :value="__('Postal Code')" />
                         <x-text-input wire:model.live="form.postal_code" id="postal-code" class="block mt-1 w-full" type="text" name="postal-code" required />
-                        <x-input-error :messages="$errors->get('form.postal-code')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('form.postal_code')" class="mt-2" />
                     </div>
 
                     <!-- Driving License -->
                     <div>
                         <x-input-label for="driving-license" :value="__('Driving License')" />
                         <x-text-input wire:model.live="form.driving_license" id="driving-license" class="block mt-1 w-full" type="text" name="driving-license" />
-                        <x-input-error :messages="$errors->get('form.driving-license')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('form.driving_license')" class="mt-2" />
                     </div>
 
                     <!-- Nationality -->
@@ -92,14 +102,14 @@
                     <div>
                         <x-input-label for="place-of-birth" :value="__('Place Of Birth')" />
                         <x-text-input wire:model.live="form.place_of_birth" id="postal-code" class="block mt-1 w-full" type="text" name="place-of-birth" required />
-                        <x-input-error :messages="$errors->get('form.place-of-birth')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('form.place_of_birth')" class="mt-2" />
                     </div>
 
                     <!-- Date Of Birth -->
                     <div>
                         <x-input-label for="date-of-birth" :value="__('Date Of Birth')" />
                         <x-text-input wire:model.live="form.date_of_birth" id="date-of-birth" class="block mt-1 w-full" type="date" name="date-of-birth" required />
-                        <x-input-error :messages="$errors->get('form.date-of-birth')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('form.date_of_birth')" class="mt-2" />
                     </div>
 
                     <!-- Professional Summary -->
