@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasDuration;
+use App\Models\Concerns\PerUser;
+use App\Models\Concerns\WithDuration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Education extends Model
+class Education extends Model implements HasDuration
 {
-    use HasFactory;
+    use PerUser;
+    use WithDuration;
 
     protected $fillable = [
         'school',

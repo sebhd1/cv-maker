@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasDuration;
+use App\Models\Concerns\PerUser;
+use App\Models\Concerns\WithDuration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Course extends Model
+class Course extends Model implements HasDuration
 {
-    use HasFactory;
+    use PerUser;
+    use WithDuration;
 
     protected $fillable = [
         'course',
@@ -21,12 +25,7 @@ class Course extends Model
         'deleted_at'
     ];
 
-
-    /***
-     * @return BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $casts = [
+        'expires_at' => 'date:Y-m-d',
+    ];
 }

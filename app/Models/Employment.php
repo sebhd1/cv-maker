@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Concerns\HasDuration;
+use App\Models\Concerns\PerUser;
+use App\Models\Concerns\WithDuration;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Employment extends Model
+class Employment extends Model implements HasDuration
 {
-    use HasFactory;
+    use PerUser;
+    use WithDuration;
 
     protected $fillable = [
         'job_title',
@@ -20,12 +22,4 @@ class Employment extends Model
         'user_id',
         'deleted_at'
     ];
-
-    /***
-     * @return BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }
