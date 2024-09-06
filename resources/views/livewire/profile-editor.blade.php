@@ -4,15 +4,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="font-semibold text-white px-3 py-3">Personal Details</h2>
 
-                <div>
-                    @if($errors?->any())
-                        @foreach($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    @endif
-                </div>
-
-                <div class="p-6 text-gray-900 dark:text-gray-100 grid grid-cols-2 gap-4">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Job title -->
                     <div>
                         <x-input-label for="title" :value="__('Title')" />

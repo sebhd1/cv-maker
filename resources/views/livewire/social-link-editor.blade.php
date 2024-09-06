@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="font-semibold text-white px-3 py-3">Social Links</h2>
-                <div class="p-6 text-gray-900 dark:text-gray-100 grid grid-cols-2 gap-4">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form wire:submit.prevent="save">
 
                         <!-- Label -->
@@ -37,7 +37,7 @@
                                         wire:confirm="Are you sure you want to delete this social link?"
                                     >🗑️</x-danger-button>
                                     <x-secondary-button
-                                        wire:click="set('editingSocialLinksId', {{ $socialLink->id }})"
+                                        wire:click="set('editingSocialLinkId', {{ $socialLink->id }})"
                                     >✒️</x-secondary-button>
                                     <button @click="open = ! open" class="text-white focus:outline-none">
                                         <span x-show="!open">🔽</span>
