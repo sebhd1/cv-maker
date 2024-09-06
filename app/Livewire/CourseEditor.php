@@ -44,9 +44,9 @@ class CourseEditor extends Component
         session()->flash('message', 'Course created successfully.');
     }
 
-    public function delete($id): ?bool
+    public function delete($id)
     {
-        return Course::where('id', $id)->delete();
+        return Course::find($id)->delete();
     }
 
     public function render()
