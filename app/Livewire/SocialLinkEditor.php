@@ -12,7 +12,7 @@ class SocialLinkEditor extends Component
 
     public SocialLinkEditorForm $form;
 
-    public $editingSocialLinksId = null;
+    public $editingSocialLinkId = null;
 
 
     #[Computed]
@@ -20,11 +20,11 @@ class SocialLinkEditor extends Component
         return auth()->user()->socialLinks;
     }
 
-    public function updatedEditingSocialLinksId() {
+    public function updatededitingSocialLinkId() {
 
-        if($this->editingSocialLinksId != null) {
+        if($this->editingSocialLinkId != null) {
 
-            $socialLink = SocialLink::find($this->editingSocialLinksId);
+            $socialLink = SocialLink::find($this->editingSocialLinkId);
 
             $this->form->fill($socialLink->toArray());
         }
@@ -33,15 +33,15 @@ class SocialLinkEditor extends Component
 
     public function save(){
 
-        if ($this->editingSocialLinksId != null) {
-            $this->form->update($this->editingSocialLinksId);
+        if ($this->editingSocialLinkId != null) {
+            $this->form->update($this->editingSocialLinkId);
         }
         else {
             $this->form->store();
         }
 
         $this->form->reset();
-        $this->reset('editingSocialLinksId');
+        $this->reset('editingSocialLinkId');
     }
 
 
