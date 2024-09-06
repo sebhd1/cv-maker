@@ -52,66 +52,76 @@
                     </form>
                 </div>
 
-                <!-- TODO Show the list of the employments -->
                 <div class="space-y-6 p-6 bg-gray-800 rounded-lg shadow-lg">
                     @foreach($this->employments as $employment)
-                        <div class="grid grid-cols-2 gap-6 bg-gray-700 p-4 rounded-lg" wire:key="{{ $employment->id }}">
-                            <div class="col-span-full flex justify-end space-x-2 mb-2">
-                                <x-danger-button
-                                    wire:click="delete({{ $employment->id }})"
-                                    wire:confirm="Are you sure you want to delete this employment entry?"
-                                >🗑️</x-danger-button>
-                                <x-secondary-button
-                                    wire:click="set('editingEmploymentId', {{ $employment->id }})"
-                                >✒️</x-secondary-button>
+                        <div x-data="{ open: false }" class="bg-gray-700 p-4 rounded-lg">
+                            <div class="col-span-full flex justify-between items-center mb-2">
+                                <h3 class="text-lg text-white font-semibold">
+                                    {{$employment->job_title}} at {{$employment->employer}}
+                                </h3>
+                                <div class="flex space-x-2">
+                                    <x-danger-button
+                                        wire:click="delete({{ $employment->id }})"
+                                        wire:confirm="Are you sure you want to delete this employment entry?"
+                                    >🗑️</x-danger-button>
+                                    <x-secondary-button
+                                        wire:click="set('editingEmploymentId', {{ $employment->id }})"
+                                    >✒️</x-secondary-button>
+                                    <button @click="open = ! open" class="text-white focus:outline-none">
+                                        <span x-show="!open">🔽</span>
+                                        <span x-show="open">🔼</span>
+                                    </button>
+                                </div>
                             </div>
 
-                            <!-- Job Title -->
-                            <div>
-                                <p class="text-sm text-gray-400">Job title</p>
-                                <p class="text-lg text-white font-semibold ml-4">
-                                    {{$employment->job_title}}
-                                </p>
-                            </div>
+                            <div x-show="open" x-transition class="grid grid-cols-2 gap-6">
+                                <!-- Job Title -->
+                                <div>
+                                    <p class="text-sm text-gray-400">Job title</p>
+                                    <p class="text-lg text-white font-semibold ml-4">
+                                        {{$employment->job_title}}
+                                    </p>
+                                </div>
 
-                            <!-- Employer -->
-                            <div>
-                                <p class="text-sm text-gray-400">Employer</p>
-                                <p class="text-lg text-white font-semibold ml-4">
-                                    {{$employment->employer}}
-                                </p>
-                            </div>
+                                <!-- Employer -->
+                                <div>
+                                    <p class="text-sm text-gray-400">Employer</p>
+                                    <p class="text-lg text-white font-semibold ml-4">
+                                        {{$employment->employer}}
+                                    </p>
+                                </div>
 
-                            <!-- Start Date -->
-                            <div>
-                                <p class="text-sm text-gray-400">Start Date</p>
-                                <p class="text-lg text-white font-semibold ml-4">
-                                    {{$employment->start_date->isoFormat('LL')}}
-                                </p>
-                            </div>
+                                <!-- Start Date -->
+                                <div>
+                                    <p class="text-sm text-gray-400">Start Date</p>
+                                    <p class="text-lg text-white font-semibold ml-4">
+                                        {{$employment->start_date->isoFormat('LL')}}
+                                    </p>
+                                </div>
 
-                            <!-- End Date -->
-                            <div>
-                                <p class="text-sm text-gray-400">End Date</p>
-                                <p class="text-lg text-white font-semibold ml-4">
-                                    {{$employment->end_date?->isoFormat('LL') ?? __('Ongoing') }}
-                                </p>
-                            </div>
+                                <!-- End Date -->
+                                <div>
+                                    <p class="text-sm text-gray-400">End Date</p>
+                                    <p class="text-lg text-white font-semibold ml-4">
+                                        {{$employment->end_date?->isoFormat('LL') ?? __('Ongoing') }}
+                                    </p>
+                                </div>
 
-                            <!-- City -->
-                            <div>
-                                <p class="text-sm text-gray-400">City</p>
-                                <p class="text-lg text-white font-semibold ml-4">
-                                    {{$employment->city}}
-                                </p>
-                            </div>
+                                <!-- City -->
+                                <div>
+                                    <p class="text-sm text-gray-400">City</p>
+                                    <p class="text-lg text-white font-semibold ml-4">
+                                        {{$employment->city}}
+                                    </p>
+                                </div>
 
-                            <!-- Description -->
-                            <div class="col-span-full">
-                                <p class="text-sm text-gray-400">Description</p>
-                                <p class="text-lg text-white font-normal ml-4">
-                                    {{$employment->description}}
-                                </p>
+                                <!-- Description -->
+                                <div class="col-span-full">
+                                    <p class="text-sm text-gray-400">Description</p>
+                                    <p class="text-lg text-white font-normal ml-4">
+                                        {{$employment->description}}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -120,5 +130,4 @@
             </div>
         </div>
     </div>
-
 </div>
