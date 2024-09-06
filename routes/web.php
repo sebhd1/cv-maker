@@ -1,6 +1,5 @@
 <?php
 
-    use App\Livewire\Counter;
     use App\Livewire\ResumeCreator;
     use Illuminate\Support\Facades\Route;
 
