@@ -45,7 +45,7 @@ class EmploymentEditor extends Component
 
     public function delete($id)
     {
-        return Employment::where('id', $id)->delete();
+        Employment::find($id)->delete();
     }
 
     public function render()
