@@ -3,16 +3,32 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Skill;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class SkillEditorForm extends Form
 {
-    #[Validate('required|string')]
+    protected $skillId = null;
     public string $skill = '';
 
-    #[Validate('required|string')]
     public string $level = '';
+
+    public function rules() {
+        return [
+            'language' => [
+                'required',
+                'string',
+                Rule::unique(Skill::class, 'skill')
+                    ->ignore($this->skillId),
+            ],
+            'level' => 'required|string'
+        ];
+    }
+
+    public function setSkillId(?int $id) {
+        $this->skillId = $id;
+    }
 
 
     public function store() {

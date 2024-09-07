@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="space-y-6 p-6 bg-gray-800 rounded-lg shadow-lg">
-                    @foreach($this->skills as $skill)
+                    @forelse($entries as $skill)
                         <div class="bg-gray-700 p-4 rounded-lg">
                             <div class="col-span-full flex justify-between items-center mb-2">
                                 <h3 class="text-lg text-white font-semibold">
@@ -45,13 +45,15 @@
                                         wire:confirm="Are you sure you want to delete this social link?"
                                     >🗑️</x-danger-button>
                                     <x-secondary-button
-                                        wire:click="set('EditingSkillId', {{ $skill->id }})"
+                                        wire:click="set('editingEntryId', {{ $skill->id }})"
                                     >✒️</x-secondary-button>
                                 </div>
                             </div>
 
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-center text-lg p-4">You have no skills to show, please add a new one!</p>
+                    @endforelse
                 </div>
             </div>
         </div>

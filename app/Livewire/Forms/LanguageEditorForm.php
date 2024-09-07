@@ -3,17 +3,32 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Language;
-use Livewire\Attributes\Validate;
+use Illuminate\Validation\Rule;
 use Livewire\Form;
 
 class LanguageEditorForm extends Form
 {
-    #[Validate('required|string')]
+    protected $languageId = null;
+
     public string $language = '';
 
-    #[Validate('required|string')]
     public string $level = '';
 
+    public function rules() {
+        return [
+            'language' => [
+                'required',
+                'string',
+                Rule::unique(Language::class, 'language')
+                    ->ignore($this->languageId),
+            ],
+            'level' => 'required|string'
+        ];
+    }
+
+    public function setLanguageId(?int $id) {
+        $this->languageId = $id;
+    }
 
     public function store() {
 

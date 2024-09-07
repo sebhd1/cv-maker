@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="space-y-6 p-6 bg-gray-800 rounded-lg shadow-lg">
-                    @foreach($this->educations as $education)
+                    @forelse($entries as $education)
                         <div x-data="{ open: false }" class="bg-gray-700 p-4 rounded-lg">
                             <div class="col-span-full flex justify-between items-center mb-2">
                                 <h3 class="text-lg text-white font-semibold">
@@ -72,7 +72,7 @@
                                         wire:confirm="Are you sure you want to delete this education entry?"
                                     >🗑️</x-danger-button>
                                     <x-secondary-button
-                                        wire:click="set('editingEducationId', {{ $education->id }})"
+                                        wire:click="set('editingEntryId', {{ $education->id }})"
                                     >✒️</x-secondary-button>
                                     <button @click="open = ! open" class="text-white focus:outline-none">
                                         <span x-show="!open">🔽</span>
@@ -139,7 +139,9 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-center text-lg p-4">You have no educations to show, please add a new one!</p>
+                    @endforelse
                 </div>
 
             </div>

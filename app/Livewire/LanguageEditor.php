@@ -3,40 +3,18 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\LanguageEditorForm;
-use App\Models\Employment;
-use App\Models\Language;
-use Livewire\Attributes\Computed;
-use Livewire\Component;
 
-class LanguageEditor extends Component
+use App\Models\Language;
+
+class LanguageEditor extends EditorComponent
 {
+    protected string $model = Language::class;
+
     public LanguageEditorForm $form;
 
-    public $editingLanguageId = null;
-
-    #[Computed]
-    public function languages() {
-        return auth()->user()->languages;
-    }
-
-    public function updatededitingLanguageId()
+    public function beforeSave()
     {
-        if ($this->editingLanguageId != null) {
-            $language = Language::find($this->editingLanguageId);
-
-            $this->form->fill($language->toArray());
-        }
-    }
-
-    public function save() {
-
-        $this->form->store();
-    }
-
-
-    public function delete($id) {
-
-        Language::find($id)->delete();
+        $this->form->setLanguageId($this->editingEntryId);
     }
 
     public function render()
