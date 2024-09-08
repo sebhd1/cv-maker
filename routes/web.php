@@ -1,20 +1,28 @@
 <?php
 
+    use App\Http\Controllers\ResumeController;
     use App\Livewire\ResumeCreator;
     use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::view('dashboard', 'dashboard')
+        ->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+    Route::group([
+        'prefix' => 'resume',
+        'as' => 'resume.',
+    ], function () {
+        Route::get('create', ResumeCreator::class)
+            ->name('create');
 
-Route::get('create', ResumeCreator::class)
-->middleware(['auth'])
-->name('create');
+        Route::get('preview', [ ResumeController::class, 'preview' ])
+            ->name('preview');
+    });
+
+    Route::view('profile', 'profile')
+        ->name('profile');
+});
 
 require __DIR__.'/auth.php';
