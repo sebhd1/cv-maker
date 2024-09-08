@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class SkillEditor extends EditorComponent
 {
-    protected string $model = Skill::class;
+    protected string $modelClass = Skill::class;
 
     public SkillEditorForm $form;
 

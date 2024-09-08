@@ -3,11 +3,12 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 abstract class EditorComponent extends Component
 {
-    protected string $model;
+    protected string $modelClass;
 
     public $entries;
 
@@ -16,7 +17,7 @@ abstract class EditorComponent extends Component
     public function updatedEditingEntryId()
     {
         if ($this->editingEntryId != null) {
-            $entry = $this->model::find($this->editingEntryId);
+            $entry = $this->modelClass::find($this->editingEntryId);
 
             $this->form->fill($entry->toArray());
         }
@@ -42,14 +43,22 @@ abstract class EditorComponent extends Component
         $this->form->reset();
         $this->reset('editingEntryId');
 
-        $this->dispatch('refreshResume');
+        $this->dispatch($this->loader);
     }
 
 
     public function delete($id) {
 
-        $this->model::where('id', $id)->delete();
+        $this->modelClass::where('id', $id)->delete();
 
-        $this->dispatch('refreshResume');
+        $this->dispatch($this->loader);
+    }
+
+    #[Computed]
+    public function loader() {
+        $path = explode('\\', $this->modelClass);
+        $entityName = Str::plural(array_pop($path));
+
+        return "load{$entityName}";
     }
 }

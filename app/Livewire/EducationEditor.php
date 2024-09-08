@@ -7,7 +7,7 @@ use App\Models\Education;
 
 class EducationEditor extends EditorComponent
 {
-    protected string $model = Education::class;
+    protected string $modelClass = Education::class;
 
     public EducationEditorForm $form;
 

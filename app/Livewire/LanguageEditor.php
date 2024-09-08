@@ -8,7 +8,7 @@ use App\Models\Language;
 
 class LanguageEditor extends EditorComponent
 {
-    protected string $model = Language::class;
+    protected string $modelClass = Language::class;
 
     public LanguageEditorForm $form;
 

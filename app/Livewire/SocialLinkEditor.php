@@ -7,7 +7,7 @@ use App\Models\SocialLink;
 
 class SocialLinkEditor extends EditorComponent
 {
-    protected string $model = SocialLink::class;
+    protected string $modelClass = SocialLink::class;
 
     public SocialLinkEditorForm $form;
 

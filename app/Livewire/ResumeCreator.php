@@ -4,57 +4,71 @@
 
     use Livewire\Attributes\Computed;
     use Livewire\Component;
+    use Spatie\LaravelPdf\Enums\Format;
+    use Spatie\LaravelPdf\Facades\Pdf;
 
     class ResumeCreator extends Component
     {
 
         protected $listeners = [
-            'refreshResume' => '$refresh'
+            'refreshResume' => '$refresh',
+            'loadEducations',
+            'loadCourses',
+            'loadEmployments',
+            'loadLanguages',
+            'loadSkills',
+            'loadSocialLinks',
         ];
 
-        #[Computed]
-        public function educations()
-        {
-            return auth()->user()->educations()
-                ->orderBy('end_date', 'DESC')
-                ->orderBy('start_date', 'DESC')
-                ->get();
+        public $educations = null;
+        public $courses = null;
+        public $employments = null;
+        public $languages = null;
+        public $skills = null;
+        public $socialLinks = null;
+
+        public function mount() {
+            $this->loadEducations();
+            $this->loadCourses();
+            $this->loadEmployments();
+            $this->loadLanguages();
+            $this->loadSkills();
+            $this->loadSocialLinks();
         }
 
-        #[Computed]
-        public function courses()
+        public function loadEducations()
         {
-            return auth()->user()->courses()
-                ->orderBy('end_date', 'DESC')
-                ->orderBy('start_date', 'DESC')
-                ->get();
+            $this->educations = auth()->user()->educations()->sorted()->get();
         }
 
-        #[Computed]
-        public function employments()
+
+        public function loadCourses()
         {
-            return auth()->user()->employments()
-                ->orderBy('end_date', 'DESC')
-                ->orderBy('start_date', 'DESC')
-                ->get();
+            $this->courses = auth()->user()->courses()->sorted()->get();
         }
 
-        #[Computed]
-        public function languages()
+
+        public function loadEmployments()
         {
-            return auth()->user()->languages;
+            $this->employments = auth()->user()->employments()->sorted()->get();
         }
 
-        #[Computed]
-        public function skills()
+
+        public function loadLanguages()
         {
-            return auth()->user()->skills;
+            $this->languages = auth()->user()->languages;
         }
 
-        #[Computed]
-        public function socialLinks()
+
+        public function loadSkills()
         {
-            return auth()->user()->socialLinks;
+            $this->skills = auth()->user()->skills;
+        }
+
+
+        public function loadSocialLinks()
+        {
+            $this->socialLinks = auth()->user()->socialLinks;
         }
 
         public function render()

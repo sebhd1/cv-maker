@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class EmploymentEditor extends EditorComponent
 {
-    protected string $model = Employment::class;
+    protected string $modelClass = Employment::class;
 
     public EmploymentEditorForm $form;
 

@@ -7,7 +7,7 @@ use App\Models\Course;
 
 class CourseEditor extends EditorComponent
 {
-    protected string $model = Course::class;
+    protected string $modelClass = Course::class;
 
     public CourseEditorForm $form;
 
