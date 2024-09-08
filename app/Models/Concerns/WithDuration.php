@@ -2,6 +2,8 @@
 
     namespace App\Models\Concerns;
 
+    use Illuminate\Database\Eloquent\Builder;
+
     trait WithDuration
     {
         public function initializeWithDuration(): void
@@ -15,5 +17,10 @@
                 'start_date' => 'date:Y-m-d',
                 'end_date' => 'date:Y-m-d',
             ]);
+        }
+
+        public function scopeSorted(Builder $query): Builder {
+            return $query->orderBy('end_date', 'DESC')
+                ->orderBy('start_date', 'DESC');
         }
     }

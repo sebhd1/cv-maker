@@ -52,7 +52,7 @@
 
                         </div>
                     @empty
-                        <p class="text-center text-lg p-4">You have no skills to show, please add a new one!</p>
+                        <p class="text-center text-lg p-4 text-white">You have no skills to show, please add a new one!</p>
                     @endforelse
                 </div>
             </div>

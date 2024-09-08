@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center text-lg p-4">You have no social links to show, please add a new one!</p>
+                        <p class="text-center text-lg p-4 text-white">You have no social links to show, please add a new one!</p>
                     @endforelse
                 </div>
             </div>
