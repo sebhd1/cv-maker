@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\PerUser;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -35,4 +34,9 @@ class Profile extends Model
         'deleted_at' => 'datetime',
         'date_of_birth' => 'date:Y-m-d',
     ];
+
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 }
