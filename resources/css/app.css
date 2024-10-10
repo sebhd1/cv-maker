@@ -1,3 +1,141 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Section Headers */
+.card-header h2, .card-header h3 {
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.card-header h5 {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+/* Personal Info & Details */
+h3 {
+    font-size: 22px;
+    color: #495057;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #007bff;
+}
+
+/* Hover Effects for Card */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Employment Section */
+.card-header.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+.card-header.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.card-header.bg-success {
+    background-color: #28a745 !important;
+}
+
+.card-header.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.card-header.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.card-header.bg-dark {
+    background-color: #343a40 !important;
+}
+
+/* Education, Courses, Skills, Social Links Sections */
+.mb-4 {
+    margin-bottom: 25px;
+}
+
+.card-body .row {
+    margin-bottom: 15px;
+}
+
+.col-md-6 {
+    margin-bottom: 15px;
+}
+
+/* Table-like Info (Courses, Social Links) */
+.row p {
+    margin: 8px 0;
+}
+
+/* Bio Section */
+.card-body p {
+    font-style: italic;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-header {
+        padding: 15px;
+    }
+
+    h3, h5, p {
+        font-size: 18px;
+    }
+
+    .col-md-6 {
+        width: 100%;
+    }
+}
