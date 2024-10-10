@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\SkillEditorForm;
 use App\Models\Skill;
-use Livewire\Component;
 
 class SkillEditor extends EditorComponent
 {

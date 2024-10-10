@@ -4,7 +4,6 @@ namespace App\Livewire\Forms;
 
 use App\Models\Skill;
 use Illuminate\Validation\Rule;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class SkillEditorForm extends Form
@@ -16,7 +15,7 @@ class SkillEditorForm extends Form
 
     public function rules() {
         return [
-            'language' => [
+            'skill' => [
                 'required',
                 'string',
                 Rule::unique(Skill::class, 'skill')

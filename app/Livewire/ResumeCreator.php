@@ -2,6 +2,7 @@
 
     namespace App\Livewire;
 
+    use App\Models\Profile;
     use Livewire\Attributes\Computed;
     use Livewire\Component;
     use Spatie\LaravelPdf\Enums\Format;
@@ -18,6 +19,7 @@
             'loadLanguages',
             'loadSkills',
             'loadSocialLinks',
+            'loadProfile'
         ];
 
         public $educations = null;
@@ -27,6 +29,8 @@
         public $skills = null;
         public $socialLinks = null;
 
+        public $profile = null;
+
         public function mount() {
             $this->loadEducations();
             $this->loadCourses();
@@ -34,11 +38,18 @@
             $this->loadLanguages();
             $this->loadSkills();
             $this->loadSocialLinks();
+            $this->loadProfile();
         }
 
         public function loadEducations()
         {
             $this->educations = auth()->user()->educations()->sorted()->get();
+        }
+
+
+        public function loadProfile() {
+            $this->profile = auth()->user()->profile ? : new Profile();
+
         }
 
 
