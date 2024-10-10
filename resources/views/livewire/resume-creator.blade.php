@@ -1,6 +1,6 @@
 <div class="grid grid-cols-2 gap-4 py-8 px-4 relative">
     <div>
-        <livewire:profile-editor :key="uniqid('profile-')" />
+        <livewire:profile-editor :entries="$this->profile" :key="uniqid('profile-')" />
         <livewire:employment-editor :entries="$this->employments" :key=" uniqid('employments-')" />
         <livewire:education-editor :entries="$this->educations" :key="uniqid('educations-')" />
         <livewire:course-editor :entries="$this->courses" :key="uniqid('courses-')" />
@@ -10,6 +10,7 @@
     </div>
 
     <iframe
+        wire:key="{{uniqid('preview-')}}"
         src="{{ route('resume.preview') }}"
         class="h-screen w-full py-8"
     ></iframe>
